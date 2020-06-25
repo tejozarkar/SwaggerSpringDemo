@@ -1,0 +1,61 @@
+swagger: "2.0"
+info:
+  title: "Book Shop"
+  description: "Book CRUD API."
+  version: "1.0.0"
+basePath: "/v2"
+schemes:
+  - "https"
+  - "http"
+paths:
+  /book:
+    get:
+      summary: "Get Books"
+      operationId: "getBooks"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Book"
+    post:
+      summary: "Add a Book"
+      operationId: "addBook"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "book"
+          description: "Book to be added in shop"
+          required: true
+          schema:
+            $ref: "#/definitions/Book"
+      responses:
+        200:
+          description: "Book Added"
+          schema:
+            type: string
+definitions:
+  Book:
+    type: "object"
+    required:
+      - "name"
+      - "photoUrls"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      title:
+        type: "string"
+        example: "Oathbringer"
+      author:
+        type: "string"
+        example: "Brandon Sanderson"
+
